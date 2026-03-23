@@ -47,16 +47,15 @@ If you want to launch it manually, short command is available at the end of `mai
 
 1. cd app
 2. Create a virtual environment with python -m venv .venv
-3. 
 # Windows
 .venv\Scripts\activate
 
 # Mac/Linux
 source .venv/bin/activate
 
-4. pip install -r requirements.txt
-5. uvicorn api.main:chess --host 127.0.0.1 --port 8000
-6. Open `http://127.0.0.1:8000` and play
+3. pip install -r requirements.txt
+4. uvicorn api.main:chess --host 127.0.0.1 --port 8000
+5. Open `http://127.0.0.1:8000` and play
 
 To finish it, just press Ctrl+C in its CMD
 
