@@ -6,6 +6,10 @@ from encode import encode_game
 from dataset import load_games
 from model import ChessNet, save_model
 #
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__))) #a little fix for colab
+#
 
 ############################
 class ChessDataset(Dataset):
