@@ -58,6 +58,8 @@ source .venv/bin/activate
 5. uvicorn api.main:chess --host 127.0.0.1 --port 8000
 6. Open `http://127.0.0.1:8000` and play
 
+To finish it, just press Ctrl+C in its CMD
+
 ---
 
 ## Project structure
