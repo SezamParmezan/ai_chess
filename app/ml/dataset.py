@@ -2,6 +2,11 @@ import io
 import chess.pgn
 import zstandard as zstd #lib to read .zst files
 from contextlib import contextmanager
+#
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__))) #a little fix for colab
+#
 
 #I love to call functions like toDo, openZST but it will not be clean code
 

@@ -4,6 +4,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as func
 #
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__))) #a little fix for colab
+#
 
 #I launch it only with Google colab because I don't even have GPU, this learning will immediately kill my pc
 RESNET_BLOCKS = 10

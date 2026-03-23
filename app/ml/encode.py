@@ -1,6 +1,10 @@
 import chess
 import numpy as np
 #
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__))) #a little fix for colab
+#
 
 PIECES = [chess.PAWN,
           chess.BISHOP,
