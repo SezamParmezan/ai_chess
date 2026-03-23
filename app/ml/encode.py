@@ -10,7 +10,7 @@ PIECES = [chess.PAWN,
           chess.QUEEN]
 
 
-###########################
+###################################################
 def encode_board(board: chess.Board) -> np.ndarray:
     tensor = np.zeros((18, 8, 8), dtype=np.float32)
 
@@ -22,7 +22,7 @@ def encode_board(board: chess.Board) -> np.ndarray:
 
         for sq in board.pieces(piece, chess.BLACK):
             r, c = divmod(sq, 8)
-            tensor[i, r, c] = 1.0
+            tensor[i + 6, r, c] = 1.0 #cause black on 7th and 8th rows
 
     #castlings (12-15)
     cr = board.castling_rights
@@ -30,9 +30,7 @@ def encode_board(board: chess.Board) -> np.ndarray:
     tensor[13] = float(bool(cr & chess.BB_A1))
     tensor[14] = float(bool(cr & chess.BB_H8))
     tensor[15] = float(bool(cr & chess.BB_A8))
-
-    #16 - 1.0 is white turn and 0.0 is black
-    tensor[16] = 1.0 if board.turn == chess.WHITE else 0.0
+    tensor[16] = 1.0 if board.turn == chess.WHITE else 0.0 #16 - 1.0 is white turn and 0.0 is black
 
     #17 - capture on the way
     if board.ep_square is not None:
@@ -41,11 +39,12 @@ def encode_board(board: chess.Board) -> np.ndarray:
 
     #18 tensors in total
     return tensor
-###########################
+###################################################
 
 
 #########################################
 def encode_move(move: chess.Move) -> int:
+    #encode current move to normal int form
     move_from = move.from_square
     move_to = move.to_square
 
@@ -54,7 +53,24 @@ def encode_move(move: chess.Move) -> int:
 #########################################
 
 
-###############################
+###############################################################
+def decode_move(action: int, board: chess.Board) -> chess.Move:
+    #reverse of encode_move(), decodes from int back to move
+    sq_from = action // 64
+    sq_to = action % 64
+    move = chess.Move(sq_from, sq_to)
+
+    #checks if pawn on this square to become queen
+    if board.piece_type_at(sq_from) == chess.PAWN:
+        #pawn becomes queen on 8th row
+        if chess.square_rank(sq_to) in (0, 7):
+            move = chess.Move(sq_from, sq_to, promotion=chess.QUEEN)
+
+    return move
+###############################################################
+
+
+####################################
 def encode_game(game) -> list[dict]:
     board = game.board()
     samples = []
@@ -74,4 +90,5 @@ def encode_game(game) -> list[dict]:
         value = -value
 
     return samples
-###############################
+    #it is the grade of the game
+####################################

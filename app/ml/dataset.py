@@ -5,7 +5,7 @@ from contextlib import contextmanager
 
 #I love to call functions like toDo, openZST but it will not be clean code
 
-############################
+#######################
 @contextmanager
 def open_ZST(zst_path):
     with open(zst_path, "rb") as f:
@@ -18,10 +18,10 @@ def open_ZST(zst_path):
             yield text_stream
         finally:
             text_stream.close()
-############################
+#######################
 
 
-############################
+###########################################
 def load_games(pgnFILE, max_games = 10000):
     #pgnFILE is the return from open_ZST function, clear thing
     games = []
@@ -34,4 +34,4 @@ def load_games(pgnFILE, max_games = 10000):
             games.append(game)
 
     return games
-############################
+###########################################
