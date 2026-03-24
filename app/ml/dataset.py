@@ -27,11 +27,18 @@ def open_ZST(zst_path):
 
 
 ###########################################
-def load_games(pgnFILE, max_games = 10000):
+def load_games(pgnFILE, max_games = 10000, skip=0):
     #pgnFILE is the return from open_ZST function, clear thing
     games = []
 
     with open_ZST(pgnFILE) as f:
+        if skip > 0:
+            print(f"Skipping {skip} games...")
+            for _ in range(skip):
+                game = chess.pgn.read_game(f)
+                if game is None:
+                    return []
+                
         for _ in range(max_games):
             game = chess.pgn.read_game(f)
             if game is None:
