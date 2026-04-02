@@ -27,7 +27,6 @@ class ChessDataset(Dataset):
         return state, action, value
     
     #Not so much to talk about, just personal dataset class to work with
-    #Something clos to dict I guess, or dict itself
 ############################
 
 
@@ -162,7 +161,16 @@ def train_by_chunk(pgnFILE,
 ###########################
 
 
-##########################
-if __name__ == "__main__":
-    train("data/lichess.pgn.zst")
-##########################
+###########################
+def train_colab_chunks(pgnFILE, save_path="weights/model.pt"):
+    # Specific function for Colab training: 50 chunks, 15000 games each, 10 epochs per chunk
+    train_by_chunk(
+        pgnFILE=pgnFILE,
+        chunks=50,
+        games_per_chunk=15_000,
+        epochs_per_chunk=10,
+        batch_size=512,
+        lr=1e-3,
+        save_path=save_path
+    )
+###########################
