@@ -83,9 +83,9 @@ def train(pgnFILE, epochs=30, batch_size=512, max_games=10_000, lr=1e-3, save_pa
             total_value_loss  += v_loss.item()
 
         batches = len(loader)
-        print(f"Epoch {epoch+1}/{epochs}"
-              f"Policy loss: {total_policy_loss/batches:.4f}"
-              f"Value loss: {total_value_loss/batches:.4f}")
+        print(f"Epoch {epoch+1}/{epochs} | "
+            f"Policy loss: {total_policy_loss/batches:.4f} | "
+            f"Value loss: {total_value_loss/batches:.4f}")
 
         save_model(model, save_path)
         print(f"Saved in {save_path}")

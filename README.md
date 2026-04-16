@@ -90,7 +90,7 @@ ai_chess/
 
 ## Train by your own
 
-The presented model is based on 15,000 games and 30 epochs, which you think is not enough for you, so here's the instruction for your own model
+The presented model is based on 50000 games with 8-10 epochs for each, which you think is not enough for you, so here's the instruction for your own model
 
 1. Upload a Lichess dataset (`.pgn.zst`) to Google Drive from [database.lichess.org](https://database.lichess.org)
 2. Open `colab/train.ipynb` in Google Colab (You can install Google Colab extension in VS Code for easier work)

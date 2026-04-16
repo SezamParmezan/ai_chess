@@ -46,6 +46,6 @@ async def new_game():
 ##########################
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:chess", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("main:chess", host="0.0.0.0", port=8000, reload=True)
     #launch via (venv) in /app uvicorn api.main:chess --reload
 ##########################
