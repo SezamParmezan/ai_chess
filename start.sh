@@ -8,5 +8,5 @@ if [ ! -d ".venv" ]; then
 fi
 echo "Starting AI Chess..."
 open http://127.0.0.1:8000 2>/dev/null || xdg-open http://127.0.0.1:8000
-.venv/bin/uvicorn api.main:chess --host 127.0.0.1 --port 8000
+..venv/bin/uvicorn api.main:chess --host 127.0.0.1 --port 8000
 EOF
