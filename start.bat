@@ -11,7 +11,12 @@ if not exist ".venv" (
 )
 
 echo Starting AI Chess...
-start http://127.0.0.1:8000
-uvicorn api.main:chess --host 127.0.0.1 --port 8000
+start /b uvicorn api.main:chess --host 127.0.0.1 --port 8000
 
+:wait_loop
+timeout /t 1 /nobreak >nul
+curl -s http://127.0.0.1:8000 >nul 2>&1
+if errorlevel 1 goto wait_loop
+
+start http://127.0.0.1:8000
 pause
